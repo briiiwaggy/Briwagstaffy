@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guessing Game</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f4f8;
+            color: #ffffff;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .nav {
+            background-color: #ffffff;
+            text-align: right;
+            padding: 1rem 2rem;
+        }
+
+        .nav a {
+            color: #efaff2;
+            text-decoration: none;
+            margin-left: 1.5rem;
+            font-weight: 600;
+        }
+
+        h1 {
+            background-color: #efaff2;
+            color: white;
+            display: inline-block;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .game-box {
+            margin-top: 2rem;
+            background-color: #efaff2;
+            padding: 2rem;
+            border-radius: 12px;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        input[type="number"] {
+            padding: 0.5rem;
+            font-size: 1rem;
+            width: 100px;
+        }
+
+        button {
+            padding: 0.5rem 1rem;
+            margin-left: 1rem;
+            background-color: #f4f4ef;
+            color: rgb(42, 42, 42);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #fff344;
+        }
+
+        .result {
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Nav -->
+    <div class="nav">
+        <a href="index.html">Home</a> |
+        <a href="scratch.html">Scratch Page</a>
+    </div>
+
+    <h1>🎯 Guess the Number!</h1>
+
+    <div class="game-box">
+        <p>I'm thinking of a number between 1 and 10. Can you guess it?</p>
+        <input type="number" id="guessInput" min="1" max="10" />
+        <button onclick="checkGuess()">Guess</button>
+        <p class="result" id="resultText"></p>
+    </div>
+
+    <script>
+        const secretNumber = Math.floor(Math.random() * 10) + 1;
+
+        function checkGuess() {
+            const userGuess = parseInt(document.getElementById('guessInput').value);
+            const result = document.getElementById('resultText');
+
+            if (isNaN(userGuess) || userGuess < 1 || userGuess > 10) {
+                result.textContent = "Please enter a number between 1 and 10.";
+                result.style.color = "#d32f2f";
+                return;
+            }
+
+            if (userGuess === secretNumber) {
+                result.textContent = "🎉 You guessed it! Great job!";
+                result.style.color = "#2e7d32";
+            } else if (userGuess < secretNumber) {
+                result.textContent = "Too low! Try again.";
+                result.style.color = "#0288d1";
+            } else {
+                result.textContent = "Too high! Try again.";
+                result.style.color = "#0288d1";
+            }
+        }
+    </script>
+
+</body>
+</html>
